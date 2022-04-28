@@ -3,7 +3,7 @@ import pandas as pd
 
 # MAP ZAMPIERI TO KUMAR'S GUIDELINES
 def zamp_to_kumar():
-    zamp_df_train = pd.read_csv('data/kumar_normal/testData-fb.csv', sep='\t')
+    zamp_df_train = pd.read_csv('E:\VU\subjectivity_mining\eigenBert\data\zampieri_normal\TrainData.csv', sep='\t')
     # zamp_df_test = pd.read_csv('data/kumar_fb/testData-tw.csv', sep='\t')
     labels_train = zamp_df_train['Label']
     #labels_test = zamp_df_test['Label']
@@ -12,11 +12,11 @@ def zamp_to_kumar():
         new_labels = []
         for label in labels:
             # Not offensive
-            if label == 'NAG':
-                label = 'non-aggressive'
+            if label == 'Offensive':
+                label = '0'
             # Offensive Targeted Individual
-            elif label == 'CAG':
-                label = 'aggressive'
+            elif label == 'non-offensive':
+                label = '1'
             # Offensive targeted group
             elif label == 'OAG':
                 label = 'aggressive'
@@ -31,7 +31,7 @@ def zamp_to_kumar():
 
     zamp_df_train['Label'] = mapping(labels_train)
     #zamp_df_test['Label'] = mapping(labels_test)
-    zamp_df_train.to_csv('data/kumar_fb/testDatam-fb.csv', sep='\t', index=False)
+    zamp_df_train.to_csv('zampieri_test.csv', sep='\t', index=False)
     #zamp_df_test.to_csv('data/kumar_fb/testDatam-tw.csv', sep='\t', index=False)
 
 
